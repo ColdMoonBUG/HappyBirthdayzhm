@@ -270,6 +270,34 @@ $(function () {
 
         $('.tips').text(data.birthdayTime); // 显示日期提示
         console.log('设置生日时间提示:', data.birthdayTime);
+
+        playCountdownBgm();
+    }
+
+    // 倒计时页面背景音乐
+    var countdownBgm = null;
+    function playCountdownBgm() {
+        if (countdownBgm) {
+            countdownBgm.play();
+            return;
+        }
+        countdownBgm = new Audio('music/mainbgm.mp3');
+        countdownBgm.loop = true;
+        countdownBgm.volume = 0.4;
+        countdownBgm.preload = 'auto';
+        var playPromise = countdownBgm.play();
+        if (playPromise && playPromise.catch) {
+            playPromise.catch(function () {
+                // 移动端需要用户手势后才能播放，等待首次交互
+                var once = function () {
+                    countdownBgm.play();
+                    document.removeEventListener('click', once);
+                    document.removeEventListener('touchstart', once);
+                };
+                document.addEventListener('click', once);
+                document.addEventListener('touchstart', once);
+            });
+        }
     }
 
     loadConfig()

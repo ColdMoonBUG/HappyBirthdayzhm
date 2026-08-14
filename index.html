@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title id="website-title">Happy Birthday</title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="style/index.css">
@@ -45,6 +46,8 @@
             style="display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background-color: rgba(0, 0, 0, 0.5); padding: 8px 15px; border-radius: 20px;">
             <div class="demo-mode-text" style="color: #ffffff; font-size: 14px; margin-right: 15px; font-weight: bold;">
                 当前为演示模式</div>
+            <button id="demo-test-20s-btn" title="将生日时间设为20秒后，查看整体效果" onclick="demoTest20s()"
+                style="background: #ff4081; color: #ffffff; border: none; border-radius: 14px; padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer; margin-right: 10px;">20秒测试</button>
             <div class="demo-icons" style="display: flex; align-items: center;">
                 <a id="github-icon" href="#" target="_blank" title="GitHub"
                     style="color: #ffffff; font-size: 18px; margin-right: 10px;">
@@ -60,5 +63,31 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="script/index.js"></script>
+<script>
+    function demoTest20s() {
+        var now = new Date();
+        var target = new Date(now.getTime() + 20000);
+        var pad = function (n) { return n < 10 ? '0' + n : n; };
+        var targetStr =
+            target.getFullYear() + '-' +
+            pad(target.getMonth() + 1) + '-' +
+            pad(target.getDate()) + ' ' +
+            pad(target.getHours()) + ':' +
+            pad(target.getMinutes()) + ':' +
+            pad(target.getSeconds());
+        var key = 'birthdayConfig';
+        var storedRaw = localStorage.getItem(key);
+        var localData = null;
+        if (storedRaw) {
+            try { localData = JSON.parse(storedRaw); } catch (e) { localData = null; }
+        }
+        if (!localData) {
+            localData = { name: '', birthdayTime: '', ifHaveGift: true, homepageText1: '', homepageText2: '', blessText: {} };
+        }
+        localData.birthdayTime = targetStr;
+        localStorage.setItem(key, JSON.stringify(localData));
+        location.reload();
+    }
+</script>
 
 </html>

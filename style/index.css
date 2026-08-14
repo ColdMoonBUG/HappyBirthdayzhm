@@ -34,6 +34,7 @@ body {
     height: 100%;
     margin: 0;
     border-radius: 8px;
+    object-fit: cover;
 }
 
 .info .left-box {
@@ -188,5 +189,77 @@ body {
     .demo-icons a {
         font-size: 16px;
         margin-left: 8px;
+    }
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    .info {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .info img {
+        border-radius: 0;
+    }
+
+    .info .left-box {
+        width: 50%;
+        border-radius: 0;
+    }
+
+    .info .right-box {
+        width: 50%;
+        border-radius: 0;
+    }
+
+    .info .time .title {
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 0 16px;
+    }
+
+    .info .time .time-box {
+        width: 96%;
+        height: 170px;
+        margin-bottom: 24px;
+    }
+
+    .info .time .time-box div p {
+        font-size: 52px;
+    }
+
+    .info .time .time-box div span {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .info .time .sub-title {
+        font-size: 13px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .info .time .sub-title.tips {
+        margin-top: 36px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .info .time .time-box {
+        height: 140px;
+    }
+
+    .info .time .time-box div p {
+        font-size: 42px;
+    }
+
+    .info .time .time-box div span {
+        font-size: 12px;
+        letter-spacing: 2px;
     }
 }

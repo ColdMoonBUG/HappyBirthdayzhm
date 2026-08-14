@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 碗身 -->
+  <path d="M36,112 C36,152 62,170 100,170 C138,170 164,152 164,112 Z" fill="#fdfaf0" stroke="#7aa8cc" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- 碗口 / 汤面 -->
+  <ellipse cx="100" cy="112" rx="64" ry="14" fill="#f7dd97" stroke="#7aa8cc" stroke-width="3.5"/>
+  <!-- 碗口前缘 -->
+  <path d="M36,112 C36,124 164,124 164,112" fill="none" stroke="#7aa8cc" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- 宽面条 -->
+  <g fill="none" stroke="#edbd5e" stroke-width="10" stroke-linecap="round">
+    <path d="M78,114 C70,92 90,84 84,64 C78,46 102,44 106,60 C110,76 94,82 98,100"/>
+    <path d="M96,116 C100,96 120,92 116,74 C112,58 134,54 138,70 C142,86 126,92 128,106"/>
+    <path d="M112,118 C116,102 100,96 104,80 C108,64 126,62 130,76"/>
+  </g>
+  <!-- 香菜 -->
+  <g fill="#6faf45">
+    <ellipse cx="84" cy="108" rx="6" ry="3.5" transform="rotate(-20 84 108)"/>
+    <ellipse cx="122" cy="106" rx="6" ry="3.5" transform="rotate(15 122 106)"/>
+    <ellipse cx="103" cy="98" rx="5" ry="3" transform="rotate(-45 103 98)"/>
+  </g>
+  <!-- 热气 -->
+  <g fill="none" stroke="#d9b378" stroke-width="3" stroke-linecap="round" opacity="0.65">
+    <path d="M72,46 C66,34 80,30 74,18"/>
+    <path d="M100,40 C94,28 108,24 102,12"/>
+    <path d="M128,46 C122,34 136,30 130,18"/>
+  </g>
+  <!-- 筷子 -->
+  <g fill="none" stroke="#a8763f" stroke-width="4.5" stroke-linecap="round">
+    <path d="M146,54 C126,80 104,120 96,152"/>
+    <path d="M162,58 C142,84 120,124 112,156"/>
+  </g>
+</svg>

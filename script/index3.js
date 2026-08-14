@@ -223,24 +223,13 @@ function applyConfigToPage(data) {
 
 function setupGiftSection(data) {
     const giftSection = document.querySelector('.nine');
-    const imageViewer = document.getElementById('image-viewer');
-    const viewerImage = document.getElementById('viewer-image');
-    const overlay = document.querySelector('.viewer-overlay');
-    const closeBtn = document.querySelector('.close-btn');
-    const replyBtn = document.getElementById('replay');
-
-    function closeImageViewer() {
-        if (imageViewer) {
-            imageViewer.classList.remove('active');
-        }
-        document.body.style.overflow = '';
-    }
+    const giftBtn = document.getElementById('gift-jump-btn');
+    const giftHint = document.querySelector('.gift-hint');
 
     if (!data.ifHaveGift) {
         if (giftSection) {
             giftSection.style.display = 'none';
         }
-        closeImageViewer();
         return;
     }
 
@@ -248,30 +237,45 @@ function setupGiftSection(data) {
         giftSection.style.display = '';
     }
 
-    if (replyBtn) {
-        replyBtn.onclick = function () {
-            if (data.giftImagePath && imageViewer && viewerImage) {
-                viewerImage.src = data.giftImagePath;
-                imageViewer.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            } else if (data.githubUrl) {
-                window.open(data.githubUrl, '_blank');
-            }
-        };
-    }
-
-    if (overlay) {
-        overlay.onclick = closeImageViewer;
-    }
-    if (closeBtn) {
-        closeBtn.onclick = closeImageViewer;
-    }
-
-    document.addEventListener('keydown', function handleKeyDown(e) {
-        if (e.key === 'Escape' && imageViewer && imageViewer.classList.contains('active')) {
-            closeImageViewer();
+    function jumpToGiftPage() {
+        if (window.location.protocol === 'file:') {
+            window.location.href = 'page2/birthday_gift/index.html';
+            return;
         }
-    });
+        var candidates = [
+            'page2/birthday_gift/index.html',
+            '../page2/birthday_gift/index.html',
+            '../../page2/birthday_gift/index.html'
+        ];
+        var i = 0;
+        function tryNext() {
+            if (i >= candidates.length) {
+                return;
+            }
+            var url = candidates[i++];
+            var req = new XMLHttpRequest();
+            req.open('HEAD', url, true);
+            req.onload = function () {
+                if (req.status >= 200 && req.status < 400) {
+                    window.location.href = url;
+                } else {
+                    tryNext();
+                }
+            };
+            req.onerror = function () {
+                tryNext();
+            };
+            req.send();
+        }
+        tryNext();
+    }
+
+    if (giftBtn) {
+        giftBtn.onclick = jumpToGiftPage;
+    }
+    if (giftHint) {
+        giftHint.onclick = jumpToGiftPage;
+    }
 }
 
 // DOMContentLoaded 事件处理
@@ -555,5 +559,23 @@ const animationTimeline = () => {
                 rotation: 90,
             },
             '+=1'
+        )
+        .fromTo(
+            '#gift-jump-btn',
+            1,
+            {
+                opacity: 0,
+                y: 30,
+                scale: 0.85,
+                visibility: 'hidden',
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                visibility: 'visible',
+                ease: Power2.easeOut,
+            },
+            '+=0.5'
         );
 }

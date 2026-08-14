@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title id="website-title">Happy Birthday</title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="style/index3.css" />
@@ -119,18 +120,8 @@
         </div>
         <div class="nine">
             <p data-node-name="giftText"></p>
-            <p id="replay" data-node-name="giftButtonText"></p>
+            <button type="button" id="gift-jump-btn" class="gift-hint" data-node-name="giftButtonText"></button>
             <p class="last-smile">:)</p>
-        </div>
-    </div>
-
-    <!-- 图片查看器 -->
-    <div id="image-viewer" class="image-viewer">
-        <div class="viewer-overlay"></div>
-        <div class="viewer-content">
-            <span class="close-btn">&times;</span>
-            <img id="viewer-image" src="" alt="礼物图片">
-            <div class="viewer-caption"></div>
         </div>
     </div>
 </body>

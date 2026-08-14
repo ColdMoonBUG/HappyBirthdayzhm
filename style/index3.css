@@ -231,11 +231,39 @@ body {
     font-weight: lighter;
 }
 
-#replay {
-    position: relative;
-    z-index: 3;
-    /* text-decoration: underline; */
+.nine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-hint {
+    display: inline-block;
+    font-size: 1.6rem !important;
+    color: #fff;
+    background: linear-gradient(135deg, #ff9ebc, #ff4081);
+    border: none;
+    border-radius: 40px;
+    padding: 14px 40px;
+    margin: 0 0 16px;
     cursor: pointer;
+    font-weight: bold;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 8px 24px rgba(255, 64, 129, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.gift-hint:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 64, 129, 0.45);
+}
+
+.gift-hint:active {
+    transform: scale(0.96);
 }
 
 /* Media Queries */
@@ -263,13 +291,27 @@ body {
     }
 }
 
-@media screen and (max-width: 500px) {
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
     .container {
-        width: 90%;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .one {
+        font-size: 2.8rem;
+    }
+
+    .two {
+        font-size: 1.2rem;
+    }
+
+    .three {
+        font-size: 2rem;
     }
 
     .four .text-box {
-        width: 90%;
+        width: 88%;
     }
 
     .text-box .fake-btn {
@@ -277,248 +319,68 @@ body {
         bottom: -38px;
     }
 
-    .idea-5 span {
-        display: block;
-    }
-
-    .idea-6 span {
-        font-size: 10rem;
-    }
-
-    .six .hat {
-        width: 50px;
-        top: -20px;
-    }
-
-    .wish-hbd {
-        font-size: 2.2em;
-    }
-
-    .wish h5 {
+    .five p {
         font-size: 1.4rem;
     }
 
+    .five .idea-5 {
+        font-size: 2.6rem;
+    }
+
+    .idea-6 span {
+        font-size: 7rem;
+    }
+
+    .six .hat {
+        width: 56px;
+        top: -26px;
+    }
+
+    .wish-hbd {
+        font-size: 1.9em;
+    }
+
+    .wish h5 {
+        font-size: 1.2rem;
+    }
+
     .nine p {
-        font-size: 1.5rem;
-        font-weight: lighter;
+        font-size: 1.4rem;
+    }
+
+    .gift-hint {
+        font-size: 1.2rem !important;
+        margin: 0 0 12px;
     }
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
+@media screen and (max-width: 375px) {
+    .one {
+        font-size: 2.2rem;
     }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
-.startSign {
-    /* 居中 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 20vh 5vw;
-}
-
-.startSign .button {
-    padding: 1rem 1.6rem;
-    border: 1px solid #2ba245;
-    border-radius: 5px;
-}
-
-.startSign .button:hover {
-    background-color: #2ba245;
-    color: #fff;
-    padding: 1rem 1.6rem;
-    cursor: pointer;
-}
-
-#replay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-    color: #fff;
-    font-size: 24px;
-    text-transform: uppercase; /* 强制大写 */
-    text-decoration: none;
-    font-family: sans-serif;
-    box-sizing: border-box;
-    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-    background-size: 400%;
-    border-radius: 30px;
-    z-index: 1;
-    margin-top: 120px;
-}
-
-#replay:hover {
-    animation: animate 8s linear infinite;
-}
-
-@keyframes animate {
-    0% {
-        background-position: 0%;
-    }
-    100% {
-        background-position: 400%;
-    }
-}
-
-#replay:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: -1;
-    background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-    background-size: 400%;
-    border-radius: 40px;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-#replay:hover:before {
-    filter: blur(20px); /*模糊效果*/
-    opacity: 1;
-    animation: animate 8s linear infinite;
-}
-
-/* 图片查看器样式 */
-.image-viewer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.image-viewer.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.viewer-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
-}
-
-.viewer-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
-}
-
-.image-viewer.active .viewer-content {
-    transform: scale(1);
-}
-
-.close-btn {
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    color: #fff;
-    font-size: 36px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.close-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
-}
-
-#viewer-image {
-    max-width: 100%;
-    max-height: 80vh;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-}
-
-#viewer-image:hover {
-    transform: scale(1.02);
-}
-
-.viewer-caption {
-    margin-top: 20px;
-    color: #fff;
-    font-size: 1.2rem;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-}
-
-/* 响应式设计 */
-@media screen and (max-width: 768px) {
-    .viewer-content {
-        max-width: 95%;
-    }
-    
-    .close-btn {
-        top: -30px;
-        right: 10px;
-        font-size: 28px;
-        width: 35px;
-        height: 35px;
-    }
-    
-    .viewer-caption {
+    .two {
         font-size: 1rem;
-        padding: 8px 15px;
     }
-}
 
-@media screen and (max-width: 480px) {
-    .viewer-content {
-        max-width: 98%;
+    .three {
+        font-size: 1.6rem;
     }
-    
-    .close-btn {
-        top: -25px;
-        right: 5px;
-        font-size: 24px;
-        width: 30px;
-        height: 30px;
+
+    .idea-6 span {
+        font-size: 5.5rem;
     }
-    
-    .viewer-caption {
-        font-size: 0.9rem;
-        padding: 6px 12px;
+
+    .wish-hbd {
+        font-size: 1.6em;
+    }
+
+    .wish h5 {
+        font-size: 1.05rem;
+    }
+
+    .gift-hint {
+        padding: 12px 30px;
+        font-size: 1.1rem !important;
     }
 }
